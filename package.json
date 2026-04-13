@@ -1,0 +1,29 @@
+{
+  "name": "swm-lecture",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion render Main out/lecture.mp4",
+    "build:section": "remotion render",
+    "web": "vite",
+    "web:build": "vite build"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.250",
+    "@remotion/fonts": "4.0.250",
+    "@remotion/google-fonts": "4.0.250",
+    "@remotion/player": "4.0.250",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.250",
+    "slides-grab": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "5.6.3",
+    "vite": "^8.0.7"
+  }
+}
