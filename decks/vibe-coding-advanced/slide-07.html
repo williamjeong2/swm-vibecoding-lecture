@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECC를 처음 도입할 때</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #F7F7F8;
+      color: #18181B;
+      padding: 24pt 31pt;
+      position: relative;
+    }
+    .slide {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 245pt 1fr;
+      gap: 24pt;
+      align-items: stretch;
+    }
+    .kicker,
+    .footer p,
+    .step p:first-child,
+    .stamp p {
+      font-family: 'Space Mono', monospace;
+    }
+    .copy {
+      display: grid;
+      align-content: center;
+    }
+    .kicker {
+      color: #C2410C;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 10pt;
+    }
+    h1 {
+      font-size: 32pt;
+      line-height: 1.15;
+      letter-spacing: 0;
+      font-weight: 880;
+      margin-bottom: 13pt;
+      padding-bottom: 3pt;
+    }
+    .message {
+      color: #52525B;
+      font-size: 12.6pt;
+      line-height: 1.42;
+      font-weight: 650;
+      max-width: 214pt;
+    }
+    .roadmap {
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+      gap: 8pt;
+      align-content: center;
+      padding: 11pt 0;
+    }
+    .step {
+      position: relative;
+      border-left: 6pt solid #D4D4D8;
+      background: #FFFFFF;
+      padding: 9pt 12pt 9pt 15pt;
+      display: grid;
+      grid-template-columns: 46pt 1fr;
+      gap: 10pt;
+      align-items: center;
+      box-shadow: 0 0 0 1pt #E4E4E7;
+    }
+    .step:nth-child(1) { margin-right: 68pt; border-left-color: #84CC16; }
+    .step:nth-child(2) { margin-left: 28pt; margin-right: 43pt; border-left-color: #06B6D4; }
+    .step:nth-child(3) { margin-left: 56pt; margin-right: 22pt; border-left-color: #F59E0B; }
+    .step:nth-child(4) { margin-left: 30pt; margin-right: 45pt; border-left-color: #EF4444; }
+    .step:nth-child(5) { margin-left: 0; margin-right: 18pt; border-left-color: #18181B; }
+    .step p:first-child {
+      color: #71717A;
+      font-size: 7.8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .step h2 {
+      font-size: 12.5pt;
+      line-height: 1.16;
+      letter-spacing: 0;
+      margin-bottom: 3pt;
+    }
+    .step p:last-child {
+      color: #52525B;
+      font-size: 8.7pt;
+      line-height: 1.28;
+      font-weight: 650;
+    }
+    .stamp {
+      position: absolute;
+      right: 32pt;
+      top: 24pt;
+      border: 1.4pt solid #18181B;
+      padding: 5pt 8pt;
+      transform: rotate(4deg);
+      background: #FFF7ED;
+    }
+    .stamp p {
+      color: #C2410C;
+      font-size: 7.2pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .footer {
+      position: absolute;
+      left: 31pt;
+      right: 31pt;
+      bottom: 12pt;
+      display: flex;
+      justify-content: space-between;
+      color: #71717A;
+      font-size: 7.5pt;
+    }
+  </style>
+</head>
+<body>
+  <div class="stamp"><p>small first</p></div>
+  <main class="slide">
+    <section class="copy">
+      <p class="kicker">Adoption / 07</p>
+      <h1>ECC를 처음<br>도입할 때</h1>
+      <p class="message">처음부터 다 켜기보다, 필요한 것부터 작게 넣는 게 좋습니다.</p>
+    </section>
+    <section class="roadmap">
+      <article class="step"><p>start</p><div><h2>code-reviewer, TDD, frontend-patterns부터</h2><p>바로 효과가 보이는 것부터 켠다.</p></div></article>
+      <article class="step"><p>rules</p><div><h2>프로젝트 규칙은 rules로 빼둡니다</h2><p>항상 지킬 기준을 배경에 깔아둡니다.</p></div></article>
+      <article class="step"><p>skills</p><div><h2>반복 작업은 skills로 쌓아둡니다</h2><p>한 번의 성공을 다음 호출로 바꾼다.</p></div></article>
+      <article class="step"><p>tools</p><div><h2>권한이 필요한 작업은 tools로 선을 긋습니다</h2><p>역할과 할 수 있는 일을 같이 묶습니다.</p></div></article>
+      <article class="step"><p>goal</p><div><h2>목표는 멋진 설정이 아니라 실수를 줄이는 것</h2><p>설정 수보다 실패가 줄었는지를 본다.</p></div></article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>07 / 54</p>
+  </footer>
+</body>
+</html>

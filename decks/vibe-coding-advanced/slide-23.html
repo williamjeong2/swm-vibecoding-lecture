@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP 대신 CLI 래퍼를 선택해야 할 때</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #F4F0E8;
+      color: #17211F;
+      padding: 24pt 30pt 22pt;
+    }
+    .slide {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12pt;
+    }
+    .topline, .footer {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 7.4pt;
+      color: #6D756F;
+      text-transform: uppercase;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 235pt 1fr;
+      gap: 18pt;
+      min-height: 0;
+    }
+    .title {
+      align-self: center;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      color: #D45D2F;
+      font-size: 8pt;
+      margin-bottom: 10pt;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 28pt;
+      line-height: 1.14;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+      padding-bottom: 3pt;
+    }
+    .message {
+      font-size: 12.2pt;
+      line-height: 1.43;
+      font-weight: 720;
+      color: #3C4641;
+    }
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10pt;
+      align-self: stretch;
+    }
+    .column {
+      display: grid;
+      grid-template-rows: auto repeat(4, 1fr);
+      border: 1.5pt solid #17211F;
+      background: #FFFDF7;
+    }
+    .column.cli {
+      box-shadow: 7pt 7pt 0 #FFD166;
+    }
+    .column.mcp {
+      box-shadow: 7pt 7pt 0 #7FD1B9;
+    }
+    .column h3 {
+      font-size: 17pt;
+      padding: 10pt 12pt;
+      border-bottom: 1.5pt solid #17211F;
+      letter-spacing: 0;
+    }
+    .row {
+      padding: 8pt 12pt;
+      border-bottom: 1pt solid #D8D0C2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+    }
+    .row:last-child {
+      border-bottom: 0;
+    }
+    .row h4 {
+      font-size: 9.8pt;
+      margin-bottom: 3pt;
+      color: #17211F;
+    }
+    .row p {
+      font-size: 8.5pt;
+      line-height: 1.28;
+      color: #4B554F;
+    }
+    .rule {
+      margin-top: 14pt;
+      border-left: 3pt solid #17211F;
+      padding: 8pt 10pt;
+      background: #FFFDF7;
+    }
+    .rule h3 {
+      font-size: 10.5pt;
+      margin-bottom: 3pt;
+    }
+    .rule p {
+      font-size: 9.4pt;
+      line-height: 1.3;
+      color: #3C4641;
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <div class="topline">
+      <p>VIBE CODING ADVANCED</p>
+      <p>MCP vs CLI</p>
+    </div>
+    <section class="content">
+      <article class="title">
+        <p class="kicker">MCP vs CLI / 23</p>
+        <h2>CLI가 더 싼 선택일 때가 있다</h2>
+        <p class="message">MCP는 편하지만 도구 설명이 컨텍스트를 먹습니다. 공식 CLI가 성숙하면 토큰과 기능 양쪽에서 유리합니다.</p>
+        <section class="rule">
+          <h3>판단 규칙</h3>
+          <p>반복 작업은 CLI 래퍼로, 대화형 탐색은 MCP로 시작합니다.</p>
+        </section>
+      </article>
+      <section class="matrix">
+        <article class="column cli">
+          <h3>CLI wrapper</h3>
+          <section class="row">
+            <h4>토큰</h4>
+            <p>help, json, exit code만 넘기면 충분합니다.</p>
+          </section>
+          <section class="row">
+            <h4>기능</h4>
+            <p>공식 CLI가 최신 옵션을 먼저 갖는 경우가 많습니다.</p>
+          </section>
+          <section class="row">
+            <h4>자동화</h4>
+            <p>shell pipeline, CI, 재시도 스크립트에 강합니다.</p>
+          </section>
+          <section class="row">
+            <h4>주의</h4>
+            <p>출력 파싱과 권한 경계는 직접 잡아야 합니다.</p>
+          </section>
+        </article>
+        <article class="column mcp">
+          <h3>MCP tool</h3>
+          <section class="row">
+            <h4>토큰</h4>
+            <p>도구가 많아지면 설명 자체가 컨텍스트 비용이 됩니다.</p>
+          </section>
+          <section class="row">
+            <h4>기능</h4>
+            <p>구조화된 호출은 좋지만, 옵션이 늦게 열릴 수 있습니다.</p>
+          </section>
+          <section class="row">
+            <h4>탐색</h4>
+            <p>대화형 조회와 객체 단위 작업에 자연스럽다.</p>
+          </section>
+          <section class="row">
+            <h4>주의</h4>
+            <p>기본으로 켜두는 도구 수는 작게 유지해야 합니다.</p>
+          </section>
+        </article>
+      </section>
+    </section>
+    <div class="footer">
+      <p>SW Maestro Lecture</p>
+      <p>23 / 54</p>
+    </div>
+  </main>
+</body>
+</html>

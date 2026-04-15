@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMC 분석/조사 계열</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #fffdf7;
+      color: #1b1c1e;
+      padding: 22pt 30pt 18pt;
+      position: relative;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      color: #625d52;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+    }
+    .topline { top: 15pt; }
+    .footer { bottom: 13pt; }
+    main {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 220pt 1fr;
+      gap: 24pt;
+      align-items: stretch;
+      padding-top: 13pt;
+      padding-bottom: 14pt;
+    }
+    .copy {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 14pt;
+      padding-top: 8pt;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      color: #d05b18;
+      margin-bottom: 9pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 24.5pt;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 11.2pt;
+      line-height: 1.42;
+      color: #514b41;
+      font-weight: 650;
+    }
+    .diagnostic {
+      align-self: end;
+      background: #1b1c1e;
+      color: #ffffff;
+      border-radius: 7pt;
+      padding: 12pt;
+    }
+    .diagnostic h2 {
+      font-size: 12pt;
+      margin-bottom: 7pt;
+    }
+    .diagnostic p {
+      font-size: 8.6pt;
+      line-height: 1.35;
+      color: #f2efe8;
+      font-weight: 600;
+    }
+    .funnel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 8pt;
+      padding: 2pt 0;
+    }
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: 118pt 1fr 86pt;
+      align-items: center;
+      gap: 10pt;
+      background: #ffffff;
+      border: 1pt solid #e3d8c8;
+      border-radius: 8pt;
+      padding: 9pt 10pt;
+      box-shadow: 0 8pt 20pt rgba(92, 68, 35, .08);
+    }
+    .stage::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7pt;
+      border-radius: 8pt 0 0 8pt;
+      background: #d05b18;
+    }
+    .stage.two::before { background: #167c80; }
+    .stage.three::before { background: #426bd8; }
+    .stage.four::before { background: #8c5a16; }
+    .stage h2 {
+      font-size: 14pt;
+      line-height: 1.1;
+      padding-left: 5pt;
+    }
+    .stage p {
+      font-size: 8.7pt;
+      line-height: 1.32;
+      color: #4d473d;
+      font-weight: 650;
+    }
+    .stage .tag {
+      font-family: 'Space Mono', monospace;
+      color: #1b1c1e;
+      background: #f3eee6;
+      border-radius: 999pt;
+      text-align: center;
+      padding: 6pt 5pt;
+      font-size: 6.8pt;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+    .question {
+      position: absolute;
+      right: 8pt;
+      top: 112pt;
+      width: 70pt;
+      height: 70pt;
+      border-radius: 50%;
+      border: 1pt solid #e3d8c8;
+      background: #fffdf7;
+      display: grid;
+      place-items: center;
+      padding: 11pt;
+      text-align: center;
+      box-shadow: 0 10pt 24pt rgba(92, 68, 35, .12);
+      display: none;
+    }
+    .question p {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.3pt;
+      color: #d05b18;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Analysis</p>
+  </div>
+  <main>
+    <section class="copy">
+      <div>
+        <p class="kicker">Analysis / 16</p>
+        <h1>모호하면 바로 만들지<br>말고 좁혀라</h1>
+        <p class="message">분석 계열은 바로 코드를 쓰는 도구가 아니라, 원인과 요구사항의 불확실성을 줄이는 도구다.</p>
+      </div>
+      <div class="diagnostic">
+        <h2>시작 문장</h2>
+        <p>“왜 그런지 모르겠어”라면 trace나 deep-dive부터, “뭘 원하는지 애매해”라면 deep-interview부터 시작합니다.</p>
+      </div>
+    </section>
+    <section class="funnel">
+      <div class="stage">
+        <h2>deep-dive</h2>
+        <p>먼저 원인을 추적하고, 그 결과로 수정 방향과 요구사항을 정리합니다.</p>
+        <p class="tag">trace + interview</p>
+      </div>
+      <div class="stage two">
+        <h2>deep-interview</h2>
+        <p>사용자, 지표, 제약, 성공 기준을 질문으로 끌어내 요구사항을 선명하게 만듭니다.</p>
+        <p class="tag">requirements</p>
+      </div>
+      <div class="stage three">
+        <h2>trace</h2>
+        <p>경쟁 가설을 세우고 로그, 코드, 재현 조건으로 하나씩 지운다.</p>
+        <p class="tag">evidence</p>
+      </div>
+      <div class="stage four">
+        <h2>sciomc</h2>
+        <p>DB, 번들, API 레이턴시처럼 관점이 여러 개인 분석을 병렬로 맡긴다.</p>
+        <p class="tag">multi angle</p>
+      </div>
+      <div class="question"><p>unknown -> evidence</p></div>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>16 / 54</p>
+  </div>
+</body>
+</html>

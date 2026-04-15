@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMC 자율 실행 계열</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #0e1411;
+      color: #f5fff8;
+      padding: 22pt 30pt 18pt;
+      position: relative;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      color: #9cb6a8;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+    }
+    .topline { top: 15pt; }
+    .footer { bottom: 13pt; }
+    main {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 225pt 1fr;
+      gap: 22pt;
+      align-items: center;
+      padding-top: 12pt;
+      padding-bottom: 12pt;
+    }
+    .copy {
+      border-left: 5pt solid #5cff9d;
+      padding-left: 15pt;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      color: #5cff9d;
+      margin-bottom: 10pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 24.5pt;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 11.2pt;
+      line-height: 1.42;
+      color: #c7d8ce;
+      font-weight: 650;
+    }
+    .chooser {
+      position: relative;
+      height: 292pt;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 10pt;
+    }
+    .mode {
+      position: relative;
+      border-radius: 8pt;
+      padding: 13pt;
+      overflow: hidden;
+      border: 1pt solid rgba(255, 255, 255, .16);
+      min-width: 0;
+    }
+    .mode h2 {
+      font-size: 15pt;
+      line-height: 1.2;
+      margin-bottom: 7pt;
+    }
+    .mode p {
+      font-size: 8.8pt;
+      line-height: 1.32;
+      color: rgba(255, 255, 255, .84);
+      font-weight: 650;
+      max-width: 136pt;
+    }
+    .mode .prompt {
+      position: absolute;
+      left: 12pt;
+      right: 12pt;
+      bottom: 11pt;
+      padding-top: 8pt;
+      border-top: 1pt solid rgba(255, 255, 255, .22);
+    }
+    .mode .prompt p {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.1pt;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, .8);
+    }
+    .auto { background: linear-gradient(135deg, #158044, #0e5c34); }
+    .ralph { background: linear-gradient(135deg, #1f6fab, #16466e); }
+    .ultra { background: linear-gradient(135deg, #7b4cc2, #4f3190); }
+    .plan { background: linear-gradient(135deg, #bc7b13, #885609); }
+    .badge {
+      position: absolute;
+      right: 10pt;
+      top: 10pt;
+      width: 32pt;
+      height: 32pt;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .16);
+      border: 1pt solid rgba(255, 255, 255, .24);
+    }
+    .badge p {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.4pt;
+      color: #ffffff;
+      text-align: center;
+      max-width: none;
+    }
+    .connector {
+      position: absolute;
+      left: 50%;
+      top: 51%;
+      width: 74pt;
+      height: 74pt;
+      margin-left: -37pt;
+      margin-top: -37pt;
+      border-radius: 50%;
+      background: #0e1411;
+      border: 1pt solid rgba(255, 255, 255, .2);
+      display: grid;
+      place-items: center;
+      padding: 11pt;
+      text-align: center;
+      box-shadow: 0 0 0 8pt rgba(14, 20, 17, .65);
+      display: none;
+    }
+    .connector h2 {
+      font-size: 11pt;
+      line-height: 1.15;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Execution</p>
+  </div>
+  <main>
+    <section class="copy">
+      <p class="kicker">Execution / 15</p>
+      <h1>요청 문장으로 실행 모드를 고른다</h1>
+      <p class="message">무엇을 만들지 분명하면 실행 계열을 씁니다. 차이는 범위, 지속성, 병렬성, 계획 합의가 필요한지예요.</p>
+    </section>
+    <section class="chooser">
+      <div class="mode auto">
+        <div class="badge"><p>01</p></div>
+        <h2>autopilot</h2>
+        <p>아이디어에서 동작 코드까지 탐색, 계획, 구현, 확인을 이어갑니다.</p>
+        <div class="prompt"><p>"로그인 페이지 만들어줘"</p></div>
+      </div>
+      <div class="mode ralph">
+        <div class="badge"><p>02</p></div>
+        <h2>ralph</h2>
+        <p>테스트가 실패하면 고치고, verifier가 OK 할 때까지 반복합니다.</p>
+        <div class="prompt"><p>"완료될 때까지 멈추지 마"</p></div>
+      </div>
+      <div class="mode ultra">
+        <div class="badge"><p>03</p></div>
+        <h2>ultrawork</h2>
+        <p>독립적인 작업을 여러 에이전트에게 동시에 나눠 맡깁니다.</p>
+        <div class="prompt"><p>"엔드포인트 5개 동시에"</p></div>
+      </div>
+      <div class="mode plan">
+        <div class="badge"><p>04</p></div>
+        <h2>ralplan</h2>
+        <p>Planner, Architect, Critic이 이견을 줄이며 실행 계획을 만든다.</p>
+        <div class="prompt"><p>"아키텍처 먼저 설계해줘"</p></div>
+      </div>
+      <div class="connector"><h2>명확한<br>작업인가?</h2></div>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>15 / 54</p>
+  </div>
+</body>
+</html>

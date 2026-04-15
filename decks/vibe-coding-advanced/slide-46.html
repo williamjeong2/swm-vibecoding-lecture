@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>러닝 케이스 정의</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:7pt}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:30pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:10pt}
+h2{font-size:14pt;line-height:1.2;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.25;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12pt;line-height:1.45;font-weight:650}
+
+body{background:#F8FAFC;color:#0F172A;padding:28pt 34pt}.footer{color:#64748B}.kicker{color:#4F46E5}main{height:100%;display:grid;grid-template-columns:250pt 1fr;gap:24pt;align-items:center}.brief{background:#fff;border:1.4pt solid #CBD5E1;padding:16pt;box-shadow:6pt 6pt 0 #4F46E5}.brief p{font-size:10pt;line-height:1.55;color:#475569}.ticket{display:grid;gap:9pt}.row{display:grid;grid-template-columns:90pt 1fr;border:1.2pt solid #CBD5E1;background:#fff}.row h2{background:#EEF2FF;padding:10pt;font-size:10pt}.row p{padding:10pt;font-size:9.5pt;line-height:1.4;color:#475569}
+</style></head><body><main><section><p class="kicker">Running Case / 46</p><h1>“회원가입 전환율이 낮다”를 작업으로 바꿉니다</h1><p class="lead">이 케이스 하나를 끝까지 들고 가면, 각 도구가 맡는 역할이 선명해집니다.</p><div class="brief"><p>나쁜 요청: 대시보드 개선해줘.</p><p>좋은 요청: 가입 전환 병목을 찾고, 폼/카피/레이아웃을 개선한 뒤 테스트와 spec까지 업데이트해줘.</p></div></section><section class="ticket"><article class="row"><h2>목표</h2><p>가입 시작 → 완료 전환율 개선</p></article><article class="row"><h2>제약</h2><p>새 UI 라이브러리 추가 금지, 기존 API 변경 금지</p></article><article class="row"><h2>산출물</h2><p>UI 수정, 테스트, OpenSpec delta, screenshot 비교</p></article><article class="row"><h2>검증</h2><p>build/test 통과, visual-verdict 4점 이상, spec 반영</p></article></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>46 / 54</p></footer></body></html>

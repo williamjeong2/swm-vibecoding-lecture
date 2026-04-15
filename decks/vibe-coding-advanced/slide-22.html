@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD에 에이전트를 편입시키는 패턴</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      color: #F7FAF8;
+      background:
+        linear-gradient(90deg, rgba(151, 245, 204, 0.035) 1pt, transparent 1pt),
+        linear-gradient(rgba(151, 245, 204, 0.03) 1pt, transparent 1pt),
+        #0B1F23;
+      background-size: 42pt 42pt, 42pt 42pt, auto;
+      padding: 24pt 30pt 22pt;
+      position: relative;
+    }
+    .slide {
+      height: 100%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 14pt;
+    }
+    .topline, .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8DB2A6;
+      font-family: 'Space Mono', monospace;
+      font-size: 7.4pt;
+      text-transform: uppercase;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 230pt 1fr;
+      gap: 20pt;
+      align-items: stretch;
+      min-height: 0;
+    }
+    .brief {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 3pt solid #79F2B1;
+      padding-left: 16pt;
+    }
+    .kicker {
+      color: #79F2B1;
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      margin-bottom: 9pt;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 29pt;
+      line-height: 1.14;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+      padding-bottom: 3pt;
+      max-width: 210pt;
+    }
+    .message {
+      color: #C8DDD6;
+      font-size: 12pt;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+    .pipeline {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 10pt;
+      min-height: 0;
+      padding: 14pt;
+      background: rgba(8, 34, 37, 0.78);
+      border: 1pt solid rgba(121, 242, 177, 0.42);
+    }
+    .pipeline-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pipeline-title h3 {
+      font-size: 12pt;
+      color: #F7FAF8;
+    }
+    .pipeline-title p {
+      color: #8DB2A6;
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+    }
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7pt;
+      align-items: stretch;
+    }
+    .stage {
+      min-height: 122pt;
+      padding: 10pt 8pt;
+      background: #103238;
+      border: 1pt solid rgba(141, 178, 166, 0.46);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stage h3 {
+      font-size: 10.5pt;
+      line-height: 1.15;
+      color: #FFFFFF;
+    }
+    .stage p {
+      font-size: 8.2pt;
+      line-height: 1.33;
+      color: #C8DDD6;
+    }
+    .stage:nth-child(2) { transform: translateY(9pt); border-color: rgba(255, 213, 128, 0.62); }
+    .stage:nth-child(3) { transform: translateY(-5pt); border-color: rgba(113, 188, 255, 0.62); }
+    .stage:nth-child(4) { transform: translateY(12pt); border-color: rgba(239, 121, 121, 0.62); }
+    .stage:nth-child(5) { border-color: rgba(121, 242, 177, 0.78); }
+    .checks {
+      display: grid;
+      grid-template-columns: 1.35fr 1.05fr 1.05fr;
+      gap: 11pt;
+    }
+    .check {
+      border: 1pt solid rgba(121, 242, 177, 0.34);
+      padding: 8pt 9pt;
+      background: rgba(4, 18, 20, 0.72);
+    }
+    .check h3 {
+      color: #79F2B1;
+      font-size: 9pt;
+      margin-bottom: 3pt;
+    }
+    .check p {
+      color: #C8DDD6;
+      font-size: 8.3pt;
+      line-height: 1.25;
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <div class="topline">
+      <p>VIBE CODING ADVANCED</p>
+      <p>Pipeline</p>
+    </div>
+    <section class="hero">
+      <article class="brief">
+        <p class="kicker">Pipeline / 22</p>
+        <h2>CI/CD에 에이전트를 넣는 법</h2>
+        <p class="message">대화창에서 하던 일을 CI가 읽을 수 있는 입력, 출력, 실패 기준으로 바꿔야 합니다.</p>
+      </article>
+      <article class="pipeline">
+        <div class="pipeline-title">
+          <h3>Agent job contract</h3>
+          <p>trigger → result</p>
+        </div>
+        <div class="stages">
+          <section class="stage">
+            <h3>PR comment</h3>
+            <p>리뷰, 수정 제안, 문서 점검을 명시적으로 부릅니다.</p>
+          </section>
+          <section class="stage">
+            <h3>schedule</h3>
+            <p>정기 리포트, 회귀 점검, 오래된 이슈 정리를 맡긴다.</p>
+          </section>
+          <section class="stage">
+            <h3>CLI output</h3>
+            <p>JSON, exit code, 로그 파일로 CI가 판정하게 만든다.</p>
+          </section>
+          <section class="stage">
+            <h3>permission</h3>
+            <p>allowedTools와 승인 모드로 실행 범위를 좁힙니다.</p>
+          </section>
+          <section class="stage">
+            <h3>gate</h3>
+            <p>테스트 실패, spec 불일치, eval 하락이면 배포를 막는다.</p>
+          </section>
+        </div>
+        <div class="checks">
+          <section class="check">
+            <h3>좋은 시작점</h3>
+            <p>반복적이고 판정 기준이 있는 작업</p>
+          </section>
+          <section class="check">
+            <h3>남길 것</h3>
+            <p>재실행 명령과 실패 로그</p>
+          </section>
+          <section class="check">
+            <h3>피할 것</h3>
+            <p>무제한 수정 권한과 긴 대화 컨텍스트</p>
+          </section>
+        </div>
+      </article>
+    </section>
+    <div class="footer">
+      <p>SW Maestro Lecture</p>
+      <p>22 / 54</p>
+    </div>
+  </main>
+</body>
+</html>

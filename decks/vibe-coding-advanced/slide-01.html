@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바이브코딩 고급반</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      color: #111827;
+      background: #F4F7FB;
+      padding: 26pt 32pt;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(17, 24, 39, 0.05) 1pt, transparent 1pt),
+        linear-gradient(rgba(17, 24, 39, 0.05) 1pt, transparent 1pt);
+      background-size: 36pt 36pt;
+    }
+    .masthead {
+      position: relative;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 26pt;
+      z-index: 1;
+    }
+    .copy {
+      align-self: end;
+      padding-bottom: 22pt;
+    }
+    .kicker,
+    .eyebrow,
+    .footer p,
+    .stack p {
+      font-family: 'Space Mono', monospace;
+    }
+    .kicker {
+      display: inline-block;
+      color: #005D5D;
+      font-size: 8.8pt;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 16pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 398pt;
+      font-size: 51pt;
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 900;
+      margin-bottom: 16pt;
+      padding-bottom: 4pt;
+    }
+    .message {
+      max-width: 338pt;
+      color: #334155;
+      font-size: 16pt;
+      line-height: 1.34;
+      font-weight: 700;
+    }
+    .showcase {
+      position: relative;
+      align-self: center;
+      transform: translateY(8pt);
+      height: 310pt;
+      border: 2pt solid #111827;
+      background: #FFFFFF;
+      box-shadow: 10pt 10pt 0 #19C37D;
+      padding: 18pt;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+    .eyebrow {
+      color: #64748B;
+      font-size: 8pt;
+      text-transform: uppercase;
+      margin-bottom: 14pt;
+    }
+    .stack {
+      display: grid;
+      gap: 10pt;
+      align-content: center;
+    }
+    .stack article {
+      border: 1.5pt solid #111827;
+      padding: 12pt 13pt;
+      display: grid;
+      grid-template-columns: 38pt 1fr;
+      gap: 10pt;
+      align-items: center;
+    }
+    .stack article:nth-child(1) { background: #DFFCF0; }
+    .stack article:nth-child(2) { background: #E6F6FF; }
+    .stack article:nth-child(3) { background: #FFF1D6; }
+    .stack article:nth-child(4) { background: #FFE5EF; }
+    .stack p {
+      color: #0F172A;
+      font-size: 8.5pt;
+      font-weight: 700;
+    }
+    .stack h2 {
+      color: #111827;
+      font-size: 15pt;
+      line-height: 1.22;
+      letter-spacing: 0;
+      padding-bottom: 2pt;
+    }
+    .footer {
+      position: absolute;
+      left: 32pt;
+      right: 32pt;
+      bottom: 18pt;
+      display: flex;
+      justify-content: space-between;
+      color: #475569;
+      font-size: 7.5pt;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <main class="masthead">
+    <section class="copy">
+      <p class="kicker">AI Native Engineering / 01</p>
+      <h1>바이브코딩<br>고급반</h1>
+      <p class="message">에이전트를 잘 쓰는 사람에서, 운영하는 사람으로</p>
+    </section>
+    <section class="showcase">
+      <p class="eyebrow">course stack</p>
+      <div class="stack">
+        <article>
+          <p>01</p>
+          <h2>ECC</h2>
+        </article>
+        <article>
+          <p>02</p>
+          <h2>OMC</h2>
+        </article>
+        <article>
+          <p>03</p>
+          <h2>Superpowers</h2>
+        </article>
+        <article>
+          <p>04</p>
+          <h2>OpenSpec</h2>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>01 / 54</p>
+  </footer>
+</body>
+</html>

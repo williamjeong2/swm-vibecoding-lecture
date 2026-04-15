@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Commit/Revert Decision Log</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:7pt}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:30pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:10pt}
+h2{font-size:14pt;line-height:1.2;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.25;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12pt;line-height:1.45;font-weight:650}
+
+body{background:#FFFBEB;color:#241A06;padding:28pt 34pt}.footer{color:#80683A}.kicker{color:#D97706}main{height:100%;display:grid;grid-template-columns:245pt 1fr;gap:24pt;align-items:center}.log{display:grid;gap:9pt}.entry{display:grid;grid-template-columns:60pt 1fr 86pt;background:#fff;border:1.2pt solid #573B07}.entry h2{padding:10pt;background:#FEF3C7;font-size:10pt}.entry p{padding:10pt;font-size:9pt;line-height:1.38;color:#69562D}.decision{font-family:'Space Mono',monospace;font-weight:700;text-align:center}.commit{color:#047857}.revert{color:#B91C1C}.retry{color:#B45309}
+</style></head><body><main><section><p class="kicker">Decision Log / 49</p><h1>실패도 기록해야 다음 실험이 빨라집니다</h1><p class="lead">에이전트가 시도한 변경을 commit/revert로만 끝내지 말고, 왜 그런 결정을 했는지 남깁니다.</p></section><section class="log"><article class="entry"><h2>#01</h2><p>CTA 카피만 변경. 테스트는 통과했지만 UI clarity 3.1.</p><p class="decision retry">retry</p></article><article class="entry"><h2>#02</h2><p>폼 단계를 줄였지만 기존 이벤트 트래킹이 깨짐.</p><p class="decision revert">revert</p></article><article class="entry"><h2>#03</h2><p>폼 간격, CTA, 오류 메시지를 함께 조정. spec과 테스트 통과.</p><p class="decision commit">commit</p></article></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>49 / 54</p></footer></body></html>

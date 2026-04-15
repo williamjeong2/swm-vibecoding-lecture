@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>디자인 워크플로우 예시</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:7pt}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:30pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:10pt}
+h2{font-size:14pt;line-height:1.2;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.25;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12pt;line-height:1.45;font-weight:650}
+
+body{background:#FFF1F2;color:#2A1014;padding:28pt 34pt}.footer{color:#8B5C63}.kicker{color:#E11D48}main{height:100%;display:grid;grid-template-columns:240pt 1fr;gap:22pt;align-items:center}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10pt}.step{background:#fff;border:1.2pt solid #5B1D28;padding:12pt;min-height:104pt}.step h2{font-size:12pt;color:#E11D48;margin-bottom:8pt}.step p{font-size:9pt;line-height:1.38;color:#6F3E46}.final{grid-column:1/4;background:#FFE4E6}
+</style></head><body><main><section><p class="kicker">Design Workflow / 53</p><h1>디자인도 하나의 검증 루프로 봅니다</h1><p class="lead">예쁘게 만들어달라고 하지 말고, 기준을 주고 비교하게 만듭니다.</p></section><section class="flow"><article class="step"><h2>1. Brief</h2><p>가입 전환율을 높이는 폼 화면.</p></article><article class="step"><h2>2. References</h2><p>Mobbin에서 온보딩 예시 3개 선택.</p></article><article class="step"><h2>3. System</h2><p>DESIGN.md와 shadcn으로 기본 기준 고정.</p></article><article class="step"><h2>4. Taste</h2><p>variance, motion, density 값을 지정.</p></article><article class="step"><h2>5. Build</h2><p>필요한 컴포넌트만 조합.</p></article><article class="step"><h2>6. Verdict</h2><p>스크린샷과 레퍼런스를 비교.</p></article><article class="step final"><h2>핵심</h2><p>디자인 감각을 프롬프트에 기대지 말고, 레퍼런스와 기준 파일로 공급합니다.</p></article></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>53 / 54</p></footer></body></html>

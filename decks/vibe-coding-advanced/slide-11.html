@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eval을 판사로 두는 자율 개선 루프</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #fbfcff;
+      color: #171923;
+      padding: 22pt 28pt 20pt;
+      position: relative;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 28pt;
+      right: 28pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      color: #5c6472;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+    }
+    .topline { top: 16pt; }
+    .footer { bottom: 14pt; }
+    main {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 10pt;
+      padding-top: 9pt;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 300pt 1fr;
+      gap: 20pt;
+      align-items: end;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      color: #006c67;
+      margin-bottom: 8pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 23.5pt;
+      line-height: 1.16;
+      font-weight: 880;
+      letter-spacing: 0;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 11pt;
+      line-height: 1.4;
+      color: #4d5563;
+      font-weight: 650;
+      padding-bottom: 2pt;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: 135pt 1fr 145pt;
+      gap: 12pt;
+      height: 270pt;
+    }
+    .column {
+      border-radius: 6pt;
+      border: 1pt solid #dbe2ea;
+      background: #ffffff;
+      padding: 12pt;
+      box-shadow: 0 10pt 26pt rgba(28, 36, 52, .08);
+      min-width: 0;
+    }
+    .column h2 {
+      font-size: 13pt;
+      line-height: 1.15;
+      margin-bottom: 10pt;
+      color: #151922;
+    }
+    .column p {
+      font-size: 8.8pt;
+      line-height: 1.35;
+      color: #4a5260;
+      font-weight: 600;
+    }
+    .brief {
+      display: grid;
+      gap: 8pt;
+    }
+    .brief-card {
+      border-left: 4pt solid #006c67;
+      background: #e9f8f6;
+      padding: 8pt;
+    }
+    .brief-card h3 {
+      font-size: 9.5pt;
+      margin-bottom: 3pt;
+      color: #006c67;
+    }
+    .scoreboard {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 8pt;
+      background: #172026;
+      color: #ffffff;
+      border-color: #172026;
+    }
+    .scoreboard h2 { color: #ffffff; }
+    .rubric {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8pt;
+    }
+    .metric {
+      border-radius: 5pt;
+      background: #24313a;
+      padding: 8pt;
+      min-height: 56pt;
+    }
+    .metric h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.5pt;
+      color: #75e0cf;
+      margin-bottom: 5pt;
+      text-transform: uppercase;
+    }
+    .metric p {
+      color: #e8f7f5;
+      font-size: 8pt;
+      line-height: 1.25;
+    }
+    .verdict {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 8pt;
+    }
+    .verdict-card {
+      border-radius: 6pt;
+      padding: 9pt;
+      border: 1pt solid #dbe2ea;
+    }
+    .verdict-card h3 {
+      font-size: 12pt;
+      margin-bottom: 4pt;
+    }
+    .pass { background: #e9f8ef; border-color: #a6dfb9; }
+    .pass h3 { color: #16813e; }
+    .retry { background: #fff7df; border-color: #e6cc75; }
+    .retry h3 { color: #8a6500; }
+    .revert { background: #ffecf0; border-color: #f1a9b9; }
+    .revert h3 { color: #ad2d4c; }
+    .bench {
+      position: absolute;
+      right: 72pt;
+      top: 92pt;
+      width: 62pt;
+      height: 7pt;
+      border-radius: 999pt;
+      background: #75e0cf;
+      transform: rotate(-4deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Judge</p>
+  </div>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="kicker">Judge / 11</p>
+        <h1>Eval이 없으면 자율 실험이 아니라 랜덤 워크다</h1>
+      </div>
+      <p class="message">사람은 목표와 평가 기준을 정하고, 에이전트는 그 안에서 작은 가설을 실험합니다.</p>
+    </section>
+    <section class="board">
+      <div class="column brief">
+        <h2>Human brief</h2>
+        <div class="brief-card"><h3>목표</h3><p>무엇이 좋아지면 성공인지 먼저 고정</p></div>
+        <div class="brief-card"><h3>제약</h3><p>건드리면 안 되는 경계와 비용 지정</p></div>
+        <div class="brief-card"><h3>단위</h3><p>한 번에 되돌릴 수 있는 작은 변경</p></div>
+      </div>
+      <div class="column scoreboard">
+        <h2>Evaluator board</h2>
+        <div class="rubric">
+          <div class="metric"><h3>Tests</h3><p>핵심 동작과 회귀 테스트 통과</p></div>
+          <div class="metric"><h3>Static</h3><p>lint, typecheck, 빌드 에러 없음</p></div>
+          <div class="metric"><h3>Scenario</h3><p>유저 시나리오 점수 개선</p></div>
+          <div class="metric"><h3>Regression</h3><p>기존 지표와 UX를 깨지 않음</p></div>
+        </div>
+      </div>
+      <div class="column verdict">
+        <div class="verdict-card pass"><h3>Commit</h3><p>기준을 넘었고 부작용도 작습니다.</p></div>
+        <div class="verdict-card retry"><h3>Retry</h3><p>방향은 맞지만 조건을 못 채웠다.</p></div>
+        <div class="verdict-card revert"><h3>Revert</h3><p>핵심 기준을 못 넘었거나 회귀가 생겼습니다.</p></div>
+      </div>
+    </section>
+  </main>
+  <div class="bench"></div>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>11 / 54</p>
+  </div>
+</body>
+</html>

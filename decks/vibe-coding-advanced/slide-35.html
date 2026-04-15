@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Task / Phase 실행 구조</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;background:#ECFEFF;color:#083344;padding:28pt 34pt;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;color:#0891B2;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:27pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:9pt}
+h2{font-size:15pt;line-height:1.18;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.22;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12.2pt;line-height:1.42;font-weight:650;color:#2D6574;max-width:320pt}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;color:#437482;font-family:'Space Mono',monospace;font-size:7pt}
+.tag{display:inline-block;border:1.2pt solid #155E75;padding:4pt 7pt;font-family:'Space Mono',monospace;font-size:7.5pt;color:#2D6574;background:#FFFFFF}
+.card{border:1.4pt solid #155E75;background:#FFFFFF;padding:11pt}
+.soft{background:#CFFAFE;border:1pt solid #155E75}
+
+main{height:100%;display:grid;grid-template-columns:282pt 1fr;gap:18pt;align-items:center}.pipeline{display:grid;gap:9pt}.pipe{display:grid;grid-template-columns:88pt 1fr;gap:10pt;align-items:center;background:#fff;border:1.2pt solid #155E75;padding:10pt}.pipe h2{font-family:'Space Mono',monospace;color:#0891B2}.pipe p{font-size:10pt;line-height:1.38;color:#2D6574}.runner{background:#083344;color:#fff;padding:14pt}.runner p{font-family:'Space Mono',monospace;font-size:8.8pt;line-height:1.7;color:#CFFAFE}
+</style></head><body><main><section><p class="kicker">Phases / 35</p><h1>큰 작업은 독립 실행<br>가능한 phase로 자릅니다</h1><p class="lead">각 세션은 phase 파일 하나만 보고도 작업을 끝낼 수 있어야 합니다.</p><section class="runner"><p>$ run-phases 1-auth</p><p>pending → execute → validate</p><p>completed | error</p></section></section><section class="pipeline"><article class="pipe"><h2>context</h2><p>LLM과 충분히 대화해 작업 맥락을 쌓음</p></article><article class="pipe"><h2>spec</h2><p>만들기 전에 문서 업데이트</p></article><article class="pipe"><h2>phase</h2><p>user flow나 큰 모듈 단위로 나눔</p></article><article class="pipe"><h2>runner</h2><p>결과 저장과 status 업데이트를 자동화</p></article></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>35 / 54</p></footer></body></html>

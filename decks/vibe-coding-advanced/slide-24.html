@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시스템 복잡도를 낮게 유지하는 전략</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #101014;
+      color: #F8F5EF;
+      padding: 24pt 30pt 22pt;
+    }
+    .slide {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 13pt;
+    }
+    .topline, .footer {
+      display: flex;
+      justify-content: space-between;
+      color: #9EA2AE;
+      font-family: 'Space Mono', monospace;
+      font-size: 7.4pt;
+      text-transform: uppercase;
+    }
+    .stage {
+      display: grid;
+      grid-template-columns: 280pt 1fr;
+      gap: 20pt;
+      min-height: 0;
+      align-items: center;
+    }
+    .headline {
+      padding: 18pt;
+      border: 1pt solid #34343E;
+      background: linear-gradient(180deg, #17171D 0%, #111116 100%);
+    }
+    .kicker {
+      color: #FFBE5C;
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      margin-bottom: 10pt;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 28.5pt;
+      line-height: 1.14;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+      padding-bottom: 3pt;
+    }
+    .message {
+      font-size: 12pt;
+      line-height: 1.43;
+      color: #D6D0C5;
+      font-weight: 680;
+    }
+    .budget {
+      position: relative;
+      height: 268pt;
+      display: grid;
+      grid-template-rows: repeat(4, 32pt) 1fr;
+      gap: 8pt;
+    }
+    .lane {
+      display: grid;
+      grid-template-columns: 72pt 1fr 48pt;
+      align-items: center;
+      gap: 9pt;
+    }
+    .lane h3 {
+      font-size: 10.4pt;
+      color: #F8F5EF;
+    }
+    .bar {
+      height: 16pt;
+      background: #262630;
+      border: 1pt solid #3C3C48;
+      padding: 3pt;
+    }
+    .fill {
+      height: 100%;
+      background: #6EE7B7;
+    }
+    .fill.medium {
+      width: 58%;
+      background: #FFBE5C;
+    }
+    .fill.low {
+      width: 38%;
+      background: #86A7FF;
+    }
+    .fill.high {
+      width: 82%;
+      background: #FF6B6B;
+    }
+    .lane p {
+      font-family: 'Space Mono', monospace;
+      color: #C2C7D0;
+      font-size: 8pt;
+      text-align: right;
+    }
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8pt;
+    }
+    .rule {
+      min-height: 62pt;
+      border: 1pt solid #34343E;
+      background: #17171D;
+      padding: 8pt;
+    }
+    .rule h3 {
+      color: #FFBE5C;
+      font-size: 9.4pt;
+      margin-bottom: 4pt;
+    }
+    .rule p {
+      color: #D6D0C5;
+      font-size: 8.7pt;
+      line-height: 1.28;
+      text-align: left;
+      font-family: 'Pretendard', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <div class="topline">
+      <p>VIBE CODING ADVANCED</p>
+      <p>Complexity Budget</p>
+    </div>
+    <section class="stage">
+      <article class="headline">
+        <p class="kicker">Complexity Budget / 24</p>
+        <h2>복잡도는 의도적으로 줄인다</h2>
+        <p class="message">에이전트를 더 붙이기보다, 실패 원인을 좁히기 쉬운 단위가 먼저입니다.</p>
+      </article>
+      <article class="budget">
+        <section class="lane">
+          <h3>도구 수</h3>
+          <div class="bar"><div class="fill low"></div></div>
+          <p>낮게</p>
+        </section>
+        <section class="lane">
+          <h3>컨텍스트</h3>
+          <div class="bar"><div class="fill medium"></div></div>
+          <p>선별</p>
+        </section>
+        <section class="lane">
+          <h3>동시 에이전트</h3>
+          <div class="bar"><div class="fill high"></div></div>
+          <p>위험</p>
+        </section>
+        <section class="lane">
+          <h3>확인 루프</h3>
+          <div class="bar"><div class="fill"></div></div>
+          <p>필수</p>
+        </section>
+        <div class="rules">
+          <section class="rule">
+            <h3>기본값</h3>
+            <p>단일 에이전트, 명확한 spec, 바로 돌릴 수 있는 테스트</p>
+          </section>
+          <section class="rule">
+            <h3>확장 조건</h3>
+            <p>반복 실패나 독립 작업이 확인될 때만 병렬화</p>
+          </section>
+          <section class="rule">
+            <h3>정리 규칙</h3>
+            <p>안 쓰는 MCP와 스킬은 기본 활성에서 내린다</p>
+          </section>
+        </div>
+      </article>
+    </section>
+    <div class="footer">
+      <p>SW Maestro Lecture</p>
+      <p>24 / 54</p>
+    </div>
+  </main>
+</body>
+</html>

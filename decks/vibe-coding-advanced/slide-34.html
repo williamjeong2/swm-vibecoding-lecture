@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>변경 크기별 워크플로우</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;background:#F8FAFC;color:#0F172A;padding:28pt 34pt;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;color:#4F46E5;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:27pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:9pt}
+h2{font-size:15pt;line-height:1.18;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.22;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12.2pt;line-height:1.42;font-weight:650;color:#475569;max-width:320pt}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;color:#64748B;font-family:'Space Mono',monospace;font-size:7pt}
+.tag{display:inline-block;border:1.2pt solid #CBD5E1;padding:4pt 7pt;font-family:'Space Mono',monospace;font-size:7.5pt;color:#475569;background:#FFFFFF}
+.card{border:1.4pt solid #CBD5E1;background:#FFFFFF;padding:11pt}
+.soft{background:#EEF2FF;border:1pt solid #CBD5E1}
+
+main{height:100%;display:grid;grid-template-rows:auto 1fr;gap:14pt}.matrix{display:grid;grid-template-columns:116pt repeat(3,1fr);border:1.4pt solid #CBD5E1;background:#fff}.matrix article{padding:9pt 10pt;border-right:1pt solid #CBD5E1;border-bottom:1pt solid #CBD5E1;min-height:54pt}.matrix article:nth-child(4n){border-right:none}.head{background:#EEF2FF}.matrix h2{font-size:10pt}.matrix p{font-size:8.2pt;line-height:1.32;color:#475569}.rowhead{background:#0F172A;color:#fff}.rowhead p{color:#CBD5E1}
+</style></head><body><main><section><p class="kicker">Sizing / 34</p><h1>모든 변경에 같은 절차를 쓰지 않습니다</h1><p class="lead">변경 크기에 따라 계획 비용과 시행착오 비용의 균형이 달라진다.</p></section><section class="matrix"><article class="head"><h2>크기</h2></article><article class="head"><h2>시작</h2></article><article class="head"><h2>실행</h2></article><article class="head"><h2>사양</h2></article><article class="rowhead"><h2>큰 변경</h2><p>리스크 큼</p></article><article><p>Superpowers 계획</p></article><article><p>TDD·subagent 실행</p></article><article><p>OpenSpec archive</p></article><article class="rowhead"><h2>중간</h2><p>사양 필요</p></article><article><p>OpenSpec propose</p></article><article><p>apply</p></article><article><p>archive</p></article><article class="rowhead"><h2>작은 수정</h2><p>속도 우선</p></article><article><p>바로 수정</p></article><article><p>검증</p></article><article><p>spec-patch</p></article></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>34 / 54</p></footer></body></html>

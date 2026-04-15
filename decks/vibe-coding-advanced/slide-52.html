@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MCP vs CLI Wrapper 예시</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:7pt}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:30pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:10pt}
+h2{font-size:14pt;line-height:1.2;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.25;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12pt;line-height:1.45;font-weight:650}
+
+body{background:#111827;color:#F9FAFB;padding:28pt 34pt}.footer{color:#94A3B8}.kicker{color:#7DD3FC}main{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:18pt;align-items:center}.panel{border:1pt solid #334155;background:#172033;padding:15pt;min-height:255pt}.panel h2{color:#7DD3FC;margin-bottom:12pt}.panel p{font-size:9.5pt;line-height:1.45;color:#CBD5E1;margin-bottom:9pt}.code{background:#0F172A;border:1pt solid #334155;padding:10pt}.code p{font-family:'Space Mono',monospace;font-size:8.3pt;color:#E2E8F0;line-height:1.6}
+</style></head><body><main><section class="panel"><p class="kicker">MCP</p><h2>탐색에 좋음</h2><p>대화형으로 issue, PR, DB 객체를 둘러볼 때 편합니다.</p><p>다만 도구 설명이 많아지면 컨텍스트 비용이 커집니다.</p><p>한 번씩 보는 작업에 적합합니다.</p></section><section class="panel"><p class="kicker">CLI Wrapper</p><h2>반복 작업에 좋음</h2><div class="code"><p>gh issue view 42 --json title,body,labels</p><p>gh pr checks --json name,state</p><p>vercel inspect --json</p></div><p>공식 CLI는 최신 옵션이 빠르고, CI와 exit code로 연결하기 쉽습니다.</p></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>52 / 54</p></footer></body></html>

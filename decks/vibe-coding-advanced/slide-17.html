@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMC 품질 관리 계열</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #f7fff9;
+      color: #122016;
+      padding: 22pt 30pt 18pt;
+      position: relative;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      color: #4c6654;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+    }
+    .topline { top: 15pt; }
+    .footer { bottom: 13pt; }
+    main {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 238pt;
+      gap: 22pt;
+      align-items: center;
+      padding-top: 12pt;
+      padding-bottom: 14pt;
+    }
+    .loop {
+      position: relative;
+      height: 292pt;
+      border-radius: 8pt;
+      background: #ffffff;
+      border: 1pt solid #d5e8d9;
+      box-shadow: 0 14pt 34pt rgba(36, 94, 50, .1);
+      overflow: hidden;
+      padding: 18pt;
+    }
+    .track {
+      position: absolute;
+      left: 82pt;
+      top: 54pt;
+      width: 190pt;
+      height: 190pt;
+      border: 18pt solid #e6f8ea;
+      border-radius: 50%;
+    }
+    .node {
+      position: absolute;
+      width: 118pt;
+      border-radius: 8pt;
+      background: #122016;
+      color: #ffffff;
+      padding: 9pt 10pt;
+      box-shadow: 0 10pt 24pt rgba(18, 32, 22, .18);
+    }
+    .node h2 {
+      font-size: 13pt;
+      margin-bottom: 5pt;
+      color: #ffffff;
+    }
+    .node p {
+      font-size: 8.4pt;
+      line-height: 1.28;
+      color: #dff6e5;
+      font-weight: 650;
+    }
+    .test { left: 30pt; top: 28pt; background: #168d45; }
+    .fix { right: 28pt; top: 98pt; background: #176b9b; }
+    .review { left: 30pt; bottom: 28pt; background: #8b5e16; }
+    .center {
+      position: absolute;
+      left: 139pt;
+      top: 112pt;
+      width: 82pt;
+      height: 82pt;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1pt solid #d5e8d9;
+      display: grid;
+      place-items: center;
+      padding: 11pt;
+      text-align: center;
+    }
+    .center h2 {
+      font-size: 13pt;
+      line-height: 1.12;
+      color: #122016;
+    }
+    .copy {
+      display: grid;
+      gap: 14pt;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      color: #168d45;
+      margin-bottom: 9pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 24.5pt;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 11.2pt;
+      line-height: 1.42;
+      color: #425047;
+      font-weight: 650;
+    }
+    .cards {
+      display: grid;
+      gap: 8pt;
+    }
+    .card {
+      border: 1pt solid #d5e8d9;
+      background: #ffffff;
+      border-radius: 7pt;
+      padding: 9pt 10pt;
+    }
+    .card h2 {
+      font-size: 12pt;
+      margin-bottom: 4pt;
+    }
+    .card p {
+      font-size: 8.5pt;
+      line-height: 1.32;
+      color: #425047;
+      font-weight: 650;
+    }
+    .card.clean h2 { color: #8b5e16; }
+    .card.visual h2 { color: #176b9b; }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Quality</p>
+  </div>
+  <main>
+    <section class="loop">
+      <div class="track"></div>
+      <div class="node test"><h2>ultraqa</h2><p>테스트, 확인, 수정 사이클을 통과할 때까지 반복</p></div>
+      <div class="node fix"><h2>fix loop</h2><p>실패 원인을 보고 다음 수정 단위로 재진입</p></div>
+      <div class="node review"><h2>ship check</h2><p>배포 전에 남은 리스크와 확인하지 못한 부분을 점검</p></div>
+      <div class="center"><h2>QA는<br>단계가<br>아니라<br>루프다</h2></div>
+    </section>
+    <section class="copy">
+      <div>
+        <p class="kicker">Quality / 17</p>
+        <h1>만든 뒤의 루프도 잡아야 합니다</h1>
+        <p class="message">품질 계열은 “만들었다” 다음에 테스트, 정리, 시각 확인을 어떤 순서로 돌릴지 잡아줍니다.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><h2>ultraqa</h2><p>배포 전에 전체 확인 루프가 필요할 때 씁니다.</p></div>
+        <div class="card clean"><h2>ai-slop-cleaner</h2><p>AI가 만든 장황한 코드, 과한 추상화, 중복을 줄인다.</p></div>
+        <div class="card visual"><h2>visual-verdict</h2><p>스크린샷과 레퍼런스를 비교해서 UI 차이를 정리합니다.</p></div>
+      </div>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>17 / 54</p>
+  </div>
+</body>
+</html>

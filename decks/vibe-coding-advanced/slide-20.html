@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스케줄 기반 자동 실행과 이벤트 트리거</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #111111;
+      color: #F8F8F4;
+      padding: 24pt 30pt;
+      position: relative;
+    }
+    .slide {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 58pt 1fr 48pt;
+      gap: 12pt;
+      position: relative;
+    }
+    .topline {
+      display: grid;
+      grid-template-columns: 1fr 230pt;
+      gap: 20pt;
+      align-items: end;
+      border-bottom: 1pt solid #383838;
+      padding-bottom: 11pt;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      color: #B6F35C;
+      font-size: 7.6pt;
+      line-height: 1.45;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 4pt;
+    }
+    h1 {
+      font-size: 23.5pt;
+      line-height: 1.16;
+      letter-spacing: 0;
+      font-weight: 900;
+      padding-bottom: 1pt;
+    }
+    .topline p {
+      color: #C8C8BC;
+      font-size: 10.5pt;
+      line-height: 1.36;
+      font-weight: 600;
+    }
+    .topline .kicker {
+      color: #B6F35C;
+      font-size: 7.4pt;
+      line-height: 1.9;
+      padding-bottom: 2pt;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: 250pt 1fr;
+      gap: 14pt;
+      min-height: 0;
+    }
+    .scheduler {
+      background: #1A1A1A;
+      border: 1pt solid #393939;
+      padding: 12pt;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 10pt;
+    }
+    .scheduler h2,
+    .events h2,
+    .handoff h2 {
+      font-size: 11pt;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+    .clock {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 42pt 1fr;
+      column-gap: 12pt;
+      position: relative;
+    }
+    .clock::before {
+      content: "";
+      position: absolute;
+      left: 44pt;
+      top: 7pt;
+      bottom: 7pt;
+      width: 2pt;
+      background: #B6F35C;
+    }
+    .time {
+      display: contents;
+    }
+    .time h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 9pt;
+      color: #B6F35C;
+      padding-top: 8pt;
+    }
+    .time p {
+      border: 1pt solid #454545;
+      background: #242424;
+      padding: 8pt 9pt;
+      margin-bottom: 8pt;
+      font-size: 8.9pt;
+      line-height: 1.25;
+      color: #F8F8F4;
+      font-weight: 650;
+    }
+    .events {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 10pt;
+      background: #F4F4EA;
+      color: #111111;
+      padding: 12pt;
+      border: 2pt solid #F4F4EA;
+    }
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 10pt;
+    }
+    .event {
+      position: relative;
+      min-height: 72pt;
+      padding: 10pt;
+      border: 1.5pt solid #111111;
+      background: #FFFFFF;
+    }
+    .event h3 {
+      font-size: 12pt;
+      font-weight: 900;
+      margin-bottom: 6pt;
+    }
+    .event p {
+      font-size: 8.8pt;
+      line-height: 1.3;
+      color: #343434;
+      font-weight: 650;
+    }
+    .event::after {
+      content: "";
+      position: absolute;
+      right: 9pt;
+      top: 9pt;
+      width: 9pt;
+      height: 9pt;
+      border-radius: 50%;
+      background: #FFB000;
+    }
+    .event:nth-child(2)::after { background: #78A6FF; }
+    .event:nth-child(3)::after { background: #FF6EA8; }
+    .event:nth-child(4)::after { background: #B6F35C; }
+    .handoff {
+      display: grid;
+      grid-template-columns: 142pt 1fr 132pt;
+      gap: 12pt;
+      align-items: stretch;
+    }
+    .handoff article {
+      border: 1pt solid #393939;
+      background: #1A1A1A;
+      padding: 10pt 12pt;
+    }
+    .handoff p {
+      color: #C8C8BC;
+      font-size: 8.8pt;
+      line-height: 1.3;
+      font-weight: 600;
+      margin-top: 5pt;
+    }
+    .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      bottom: 11pt;
+      display: flex;
+      justify-content: space-between;
+      color: #88887C;
+      font-family: 'Space Mono', monospace;
+      font-size: 7pt;
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <section class="topline">
+      <div>
+        <p class="kicker">Async / 20</p>
+        <h1>에이전트를 운영 작업자로 배치하기</h1>
+      </div>
+      <p>자동화는 “언제 깨어날지”와 “실패하면 어디로 넘길지”까지 같이 정해야 합니다.</p>
+    </section>
+    <section class="board">
+      <article class="scheduler">
+        <h2>스케줄 슬롯</h2>
+        <div class="clock">
+          <div class="time">
+            <h3>09:00</h3>
+            <p>지난밤 실패 로그 요약과 담당자 멘션</p>
+          </div>
+          <div class="time">
+            <h3>14:00</h3>
+            <p>문서·스펙 드리프트 확인</p>
+          </div>
+          <div class="time">
+            <h3>금요일</h3>
+            <p>반복 이슈를 스킬 후보로 정리</p>
+          </div>
+        </div>
+      </article>
+      <article class="events">
+        <h2>이벤트 트리거</h2>
+        <div class="event-grid">
+          <article class="event">
+            <h3>PR</h3>
+            <p>라벨·코멘트·리뷰 요청에 따라 테스트와 요약을 실행.</p>
+          </article>
+          <article class="event">
+            <h3>Hook</h3>
+            <p>파일 수정 전후, 커맨드 실행 전후에 로컬 가드를 붙임.</p>
+          </article>
+          <article class="event">
+            <h3>Issue</h3>
+            <p>버그 템플릿이 채워지면 재현 조사 태스크로 변환.</p>
+          </article>
+          <article class="event">
+            <h3>Push</h3>
+            <p>작은 변경은 자동 점검, 큰 변경은 사람 승인으로 분기.</p>
+          </article>
+        </div>
+      </article>
+    </section>
+    <section class="handoff">
+      <article>
+        <h2>자동화 대상</h2>
+        <p>반복적이고 판정 기준이 분명한 작업부터 시작합니다.</p>
+      </article>
+      <article>
+        <h2>로그 계약</h2>
+        <p>실패 원인, 재실행 커맨드, 마지막 안전 지점을 남긴다.</p>
+      </article>
+      <article>
+        <h2>사람 개입</h2>
+        <p>권한·비용·릴리즈 판단은 승인 지점으로 빼둔다.</p>
+      </article>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>20 / 54</p>
+  </div>
+</body>
+</html>

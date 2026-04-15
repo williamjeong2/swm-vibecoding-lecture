@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMC 유틸리티 계열</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #fffaf2;
+      color: #25201a;
+      padding: 22pt 30pt 18pt;
+      position: relative;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      color: #6a5b48;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+    }
+    .topline { top: 15pt; }
+    .footer { bottom: 13pt; }
+    main {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 78pt 1fr;
+      gap: 12pt;
+      padding-top: 12pt;
+      padding-bottom: 14pt;
+    }
+    .title {
+      display: grid;
+      grid-template-columns: 300pt 1fr;
+      gap: 20pt;
+      align-items: end;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      color: #a86110;
+      margin-bottom: 8pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 23.5pt;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 11pt;
+      line-height: 1.42;
+      color: #584b3a;
+      font-weight: 650;
+    }
+    .shelf {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14pt;
+      align-items: end;
+      padding: 0 8pt 12pt;
+    }
+    .shelf::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 12pt;
+      border-radius: 6pt;
+      background: #33281d;
+      box-shadow: 0 10pt 0 #ead5bd;
+    }
+    .tool {
+      position: relative;
+      z-index: 1;
+      min-height: 214pt;
+      border-radius: 8pt 8pt 4pt 4pt;
+      background: #ffffff;
+      border: 1pt solid #ead5bd;
+      box-shadow: 0 14pt 32pt rgba(88, 63, 34, .12);
+      padding: 14pt 13pt 16pt;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 9pt;
+    }
+    .tool.research { border-top: 10pt solid #1f7f83; }
+    .tool.project { border-top: 10pt solid #7d56b5; transform: translateY(-16pt); }
+    .tool.learn { border-top: 10pt solid #c3691a; }
+    .tool h2 {
+      font-size: 15.5pt;
+      line-height: 1.2;
+    }
+    .tool .use {
+      font-family: 'Space Mono', monospace;
+      color: #7b644d;
+      font-size: 7.1pt;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+    .tool p {
+      font-size: 8.8pt;
+      line-height: 1.34;
+      color: #514536;
+      font-weight: 650;
+    }
+    .tool ul {
+      list-style: none;
+      display: grid;
+      gap: 6pt;
+      align-content: start;
+    }
+    .tool li {
+      font-size: 8.3pt;
+      line-height: 1.28;
+      color: #25201a;
+      padding: 6pt 7pt;
+      background: #fffaf2;
+      border: 1pt solid #f0dfca;
+      border-radius: 5pt;
+      font-weight: 650;
+    }
+    .label {
+      border-top: 1pt solid #ead5bd;
+      padding-top: 8pt;
+    }
+    .label p {
+      font-family: 'Space Mono', monospace;
+      color: #a86110;
+      font-size: 7pt;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Utilities</p>
+  </div>
+  <main>
+    <section class="title">
+      <div>
+        <p class="kicker">Utilities / 18</p>
+        <h1>유틸리티는 작업 전후의 빈틈을 메운다</h1>
+      </div>
+      <p class="message">문서 검색, 레거시 온보딩, 대화 패턴 저장은 구현 모드와 따로 다룰수록 흐름이 깔끔해집니다.</p>
+    </section>
+    <section class="shelf">
+      <div class="tool research">
+        <p class="use">latest docs</p>
+        <h2>external-context</h2>
+        <p>여러 문서 specialist가 최신 외부 문서를 나눠서 찾아봅니다.</p>
+        <ul>
+          <li>라이브러리 조합 베스트 프랙티스</li>
+          <li>공식 문서와 예제 비교</li>
+        </ul>
+        <div class="label"><p>when: 최신성이 중요할 때</p></div>
+      </div>
+      <div class="tool project">
+        <p class="use">legacy onboarding</p>
+        <h2>deepinit</h2>
+        <p>코드베이스를 분석하고 디렉토리별 맥락을 AGENTS.md로 남긴다.</p>
+        <ul>
+          <li>새 프로젝트 첫 진입</li>
+          <li>레거시 구조 파악</li>
+        </ul>
+        <div class="label"><p>when: 구조를 먼저 알아야 할 때</p></div>
+      </div>
+      <div class="tool learn">
+        <p class="use">reuse pattern</p>
+        <h2>learner</h2>
+        <p>이번 대화에서 다시 쓸 만한 해결 방법을 스킬로 뽑아냅니다.</p>
+        <ul>
+          <li>팀 노하우 저장</li>
+          <li>다음 프로젝트에 재사용</li>
+        </ul>
+        <div class="label"><p>when: 같은 패턴을 또 쓸 때</p></div>
+      </div>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>18 / 54</p>
+  </div>
+</body>
+</html>

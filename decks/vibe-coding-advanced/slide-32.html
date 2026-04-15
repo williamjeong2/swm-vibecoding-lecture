@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>OpenSpec 베스트 프랙티스</title><style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:720pt;height:405pt;overflow:hidden;font-family:'Pretendard',sans-serif;background:#E2E8F0;color:#0F172A;padding:28pt 34pt;position:relative}
+p,h1,h2,h3,h4,li{letter-spacing:0}
+.mono{font-family:'Space Mono',monospace}
+.kicker{font-family:'Space Mono',monospace;font-size:8pt;font-weight:700;color:#0F172A;text-transform:uppercase;margin-bottom:9pt}
+h1{font-size:27pt;line-height:1.12;font-weight:900;padding-bottom:3pt;margin-bottom:9pt}
+h2{font-size:15pt;line-height:1.18;font-weight:850;padding-bottom:2pt}
+h3{font-size:10.5pt;line-height:1.22;font-weight:850;padding-bottom:1pt}
+.lead{font-size:12.2pt;line-height:1.42;font-weight:650;color:#475569;max-width:320pt}
+.footer{position:absolute;left:34pt;right:34pt;bottom:14pt;display:flex;justify-content:space-between;color:#475569;font-family:'Space Mono',monospace;font-size:7pt}
+.tag{display:inline-block;border:1.2pt solid #334155;padding:4pt 7pt;font-family:'Space Mono',monospace;font-size:7.5pt;color:#475569;background:#F8FAFC}
+.card{border:1.4pt solid #334155;background:#F8FAFC;padding:11pt}
+.soft{background:#CBD5E1;border:1pt solid #334155}
+
+main{height:100%;display:grid;grid-template-columns:1fr 300pt;gap:24pt;align-items:center}.checklist{display:grid;gap:9pt}.check{background:#F8FAFC;border:1.2pt solid #334155;padding:10pt;display:grid;grid-template-columns:22pt 1fr;gap:8pt}.check h2{font-size:10.5pt}.check p{font-size:9pt;line-height:1.34;color:#475569}.mark{font-family:'Space Mono',monospace;color:#0F172A}.review{background:#0F172A;color:#fff;padding:16pt}.review h2{color:#fff;margin-bottom:12pt}.review p{font-size:10pt;line-height:1.5;color:#CBD5E1}
+</style></head><body><main><section><p class="kicker">Practice / 32</p><h1>무거운 절차가 아니라<br>같은 문서를 보는 장치</h1><p class="lead">OpenSpec은 대화를 길게 끌기보다, 기준을 파일로 남겨 반복 설명을 줄입니다.</p><div class="review" style="margin-top:12pt"><h2>리뷰 타이밍</h2><p>proposal과 specs는 만들기 전에 보고, 끝나면 archive를 빼먹지 않습니다.</p></div></section><section class="checklist"><article class="check"><p class="mark">01</p><div><h2>작은 기능부터 시작</h2><p>팀의 문서 리듬을 만든다.</p></div></article><article class="check"><p class="mark">02</p><div><h2>tasks는 체크 가능하게</h2><p>실행 단위와 확인 기준을 나눕니다.</p></div></article><article class="check"><p class="mark">03</p><div><h2>brownfield 먼저 흡수</h2><p>기존 동작을 specs에 반영합니다.</p></div></article><article class="check"><p class="mark">04</p><div><h2>긴 대화보다 spec</h2><p>에이전트에게 기준 문서를 먼저 읽게 합니다.</p></div></article></section></main><footer class="footer"><p>SW Maestro Lecture</p><p>32 / 54</p></footer></body></html>

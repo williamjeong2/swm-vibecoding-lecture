@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECC Hooks와 Continuous Learning</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      color: #18201b;
+      background: linear-gradient(135deg, #f7fbf6 0%, #eef7ff 56%, #fff8e6 100%);
+      padding: 24pt 30pt 22pt;
+      position: relative;
+    }
+    .grain {
+      position: absolute;
+      inset: 14pt;
+      border: 1pt solid rgba(24, 32, 27, .12);
+      pointer-events: none;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      color: #56645f;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+    }
+    .topline { top: 18pt; }
+    .footer { bottom: 16pt; }
+    main {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 230pt 1fr;
+      gap: 26pt;
+      align-items: center;
+      padding-top: 8pt;
+    }
+    .intro {
+      padding: 18pt 0 10pt;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.6pt;
+      color: #0b7a50;
+      margin-bottom: 12pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 25pt;
+      line-height: 1.16;
+      font-weight: 880;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 12.2pt;
+      line-height: 1.46;
+      color: #405149;
+      font-weight: 650;
+      margin-bottom: 16pt;
+    }
+    .note {
+      border-left: 4pt solid #0fb36b;
+      padding: 9pt 0 9pt 12pt;
+      background: rgba(255, 255, 255, .62);
+    }
+    .note p {
+      font-size: 9.2pt;
+      line-height: 1.35;
+      color: #2b3a33;
+    }
+    .loop {
+      position: relative;
+      height: 292pt;
+      border-radius: 6pt;
+      background: rgba(255, 255, 255, .72);
+      border: 1pt solid rgba(24, 32, 27, .14);
+      box-shadow: 0 18pt 42pt rgba(25, 57, 44, .12);
+    }
+    .orbit {
+      position: absolute;
+      left: 102pt;
+      top: 52pt;
+      width: 180pt;
+      height: 180pt;
+      border: 2pt dashed rgba(11, 122, 80, .38);
+      border-radius: 50%;
+    }
+    .hub {
+      position: absolute;
+      left: 144pt;
+      top: 94pt;
+      width: 96pt;
+      height: 96pt;
+      border-radius: 50%;
+      background: #10231b;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12pt;
+    }
+    .hub h2 {
+      font-size: 13pt;
+      line-height: 1.15;
+      color: #ffffff;
+      font-weight: 850;
+    }
+    .step {
+      position: absolute;
+      width: 118pt;
+      min-height: 48pt;
+      border-radius: 6pt;
+      background: #ffffff;
+      border: 1pt solid rgba(24, 32, 27, .14);
+      padding: 8pt 9pt;
+      box-shadow: 0 8pt 18pt rgba(25, 57, 44, .09);
+    }
+    .step h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.4pt;
+      color: #0b7a50;
+      margin-bottom: 3pt;
+      text-transform: uppercase;
+    }
+    .step p {
+      font-size: 8.2pt;
+      line-height: 1.22;
+      color: #25352e;
+      font-weight: 650;
+    }
+    .s1 { left: 133pt; top: 12pt; }
+    .s2 { right: 18pt; top: 92pt; border-color: rgba(0, 112, 243, .28); }
+    .s2 h3 { color: #0069b5; }
+    .s3 { left: 134pt; bottom: 12pt; border-color: rgba(212, 139, 0, .3); }
+    .s3 h3 { color: #9a6400; }
+    .s4 { left: 18pt; top: 92pt; border-color: rgba(178, 55, 83, .28); }
+    .s4 h3 { color: #a22d4a; }
+    .arrow {
+      position: absolute;
+      width: 38pt;
+      height: 4pt;
+      border-radius: 999pt;
+      background: #0fb36b;
+    }
+    .a1 { left: 247pt; top: 67pt; transform: rotate(33deg); background: #0b7a50; }
+    .a2 { right: 90pt; top: 190pt; transform: rotate(118deg); background: #0070c9; }
+    .a3 { left: 94pt; top: 210pt; transform: rotate(33deg); background: #d48b00; }
+    .a4 { left: 86pt; top: 67pt; transform: rotate(118deg); background: #b23753; }
+    .bottom-strip {
+      position: absolute;
+      left: 18pt;
+      right: 18pt;
+      bottom: 66pt;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10pt;
+    }
+    .mini {
+      padding: 8pt 10pt;
+      border-radius: 6pt;
+      background: #fff9e9;
+      border: 1pt solid rgba(212, 139, 0, .28);
+    }
+    .mini p {
+      font-size: 8.3pt;
+      color: #584325;
+      line-height: 1.3;
+      font-weight: 650;
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Learning Loop</p>
+  </div>
+  <main>
+    <section class="intro">
+      <p class="kicker">Learning Loop / 10</p>
+      <h1>좋은 하네스는<br>반복을 기억합니다</h1>
+      <p class="message">Hooks는 한 번의 작업을 관찰하고, Continuous Learning은 그 패턴을 다음 작업의 기본값으로 바꿉니다.</p>
+      <div class="note">
+        <p>핵심은 자동화 자체보다 축적입니다. 같은 설명을 매번 다시 하지 않게 만드는 거죠.</p>
+      </div>
+    </section>
+    <section class="loop">
+      <div class="orbit"></div>
+      <div class="arrow a1"></div>
+      <div class="arrow a2"></div>
+      <div class="arrow a3"></div>
+      <div class="arrow a4"></div>
+      <div class="hub"><h2>Instinct<br>Memory</h2></div>
+      <div class="step s1"><h3>Hook</h3><p>검사, 로깅, 경고, 자동 저장</p></div>
+      <div class="step s2"><h3>Pattern</h3><p>반복되는 도구 사용과 판단을 포착</p></div>
+      <div class="step s3"><h3>/evolve</h3><p>스킬이나 커맨드로 다듬어 재사용</p></div>
+      <div class="step s4"><h3>Scope</h3><p>프로젝트별 규칙으로 오염을 줄임</p></div>
+      <div class="bottom-strip">
+        <div class="mini"><p>세션 로그는 다음 세션의 출발선이 됩니다.</p></div>
+        <div class="mini"><p>학습 단위가 작을수록 되돌리기도 쉽다.</p></div>
+      </div>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>10 / 54</p>
+  </div>
+</body>
+</html>

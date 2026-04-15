@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everything Claude Code 개요</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: visible;
+      font-family: 'Pretendard', sans-serif;
+      background: #0B0F19;
+      color: #F9FAFB;
+      padding: 25pt 32pt;
+      position: relative;
+    }
+    .slide {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 250pt 1fr;
+      gap: 25pt;
+      align-items: center;
+    }
+    .kicker,
+    .footer p,
+    .node p:first-child,
+    .kernel p {
+      font-family: 'Space Mono', monospace;
+    }
+    .kicker {
+      color: #22C55E;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 11pt;
+    }
+    h1 {
+      font-size: 28pt;
+      line-height: 1.16;
+      letter-spacing: 0;
+      font-weight: 880;
+      margin-bottom: 12pt;
+      padding-bottom: 3pt;
+    }
+    .message {
+      color: #CBD5E1;
+      font-size: 12.5pt;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+    .orbit {
+      position: relative;
+      height: 305pt;
+      border: 1pt solid rgba(255, 255, 255, 0.12);
+      background:
+        radial-gradient(circle at center, rgba(34, 197, 94, 0.18), transparent 40%),
+        #111827;
+      overflow: hidden;
+    }
+    .ring {
+      position: absolute;
+      left: 70pt;
+      top: 50pt;
+      width: 250pt;
+      height: 205pt;
+      border: 1pt dashed rgba(148, 163, 184, 0.45);
+      border-radius: 50%;
+    }
+    .ring:last-child {
+      left: 35pt;
+      top: 25pt;
+      width: 320pt;
+      height: 255pt;
+      opacity: 0.65;
+    }
+    .kernel {
+      position: absolute;
+      left: 128pt;
+      top: 105pt;
+      width: 150pt;
+      height: 86pt;
+      background: #22C55E;
+      color: #0B0F19;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12pt;
+      z-index: 2;
+    }
+    .kernel h2 {
+      font-size: 18pt;
+      letter-spacing: 0;
+      line-height: 1.18;
+      padding-bottom: 2pt;
+    }
+    .kernel p {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 4pt;
+    }
+    .node {
+      position: absolute;
+      width: 104pt;
+      min-height: 58pt;
+      border: 1pt solid rgba(255, 255, 255, 0.18);
+      background: #0B0F19;
+      padding: 9pt;
+      z-index: 3;
+    }
+    .node p:first-child {
+      color: #86EFAC;
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 4pt;
+    }
+    .node h3 {
+      font-size: 11.3pt;
+      line-height: 1.12;
+      letter-spacing: 0;
+      margin-bottom: 4pt;
+    }
+    .node p:last-child {
+      color: #CBD5E1;
+      font-size: 8pt;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+    .n1 { left: 28pt; top: 18pt; }
+    .n2 { right: 12pt; top: 32pt; }
+    .n3 { left: 18pt; bottom: 26pt; }
+    .n4 { right: 12pt; bottom: 22pt; }
+    .n5 { left: 150pt; top: 15pt; }
+    .n6 { left: 154pt; bottom: 13pt; }
+    .footer {
+      position: absolute;
+      left: 32pt;
+      right: 32pt;
+      bottom: 12pt;
+      display: flex;
+      justify-content: space-between;
+      color: #94A3B8;
+      font-size: 7.5pt;
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <section>
+      <p class="kicker">ECC / 06</p>
+      <h1>Everything Claude Code<br>개요</h1>
+      <p class="message">ECC는 단순 설정 모음이 아니라, 에이전트를 운영하기 위한 부품 묶음에 가깝습니다.</p>
+    </section>
+    <section class="orbit">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <article class="kernel">
+        <p>control harness</p>
+        <h2>ECC</h2>
+      </article>
+      <article class="node n1"><p>agents</p><h3>전문 에이전트</h3><p>역할과 권한을 나눕니다</p></article>
+      <article class="node n2"><p>skills</p><h3>워크플로우</h3><p>자주 쓰는 절차를 꺼내 씁니다</p></article>
+      <article class="node n3"><p>commands</p><h3>명령 진입점</h3><p>슬래시 명령으로 바로 시작합니다</p></article>
+      <article class="node n4"><p>hooks</p><h3>자동화</h3><p>도구 사용 전후를 잡는다</p></article>
+      <article class="node n5"><p>rules</p><h3>공통 규칙</h3><p>항상 지킬 기준을 깔아둡니다</p></article>
+      <article class="node n6"><p>mcp-configs</p><h3>외부 연결</h3><p>필요한 도구만 붙입니다</p></article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>06 / 54</p>
+  </footer>
+</body>
+</html>

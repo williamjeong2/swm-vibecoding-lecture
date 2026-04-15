@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네 도구의 역할을 한 장으로 보기</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #FFFFFF;
+      color: #111827;
+      padding: 24pt 30pt 20pt;
+      position: relative;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 15pt;
+    }
+    .kicker,
+    .footer p,
+    th,
+    .tag {
+      font-family: 'Space Mono', monospace;
+    }
+    .kicker {
+      color: #7C2D12;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6pt;
+    }
+    h1 {
+      font-size: 27pt;
+      line-height: 1.18;
+      letter-spacing: 0;
+      font-weight: 880;
+      padding-bottom: 3pt;
+    }
+    .message {
+      max-width: 250pt;
+      color: #4B5563;
+      font-size: 11.5pt;
+      line-height: 1.35;
+      font-weight: 650;
+      text-align: right;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      box-shadow: 0 0 0 1.4pt #111827;
+    }
+    th {
+      background: #111827;
+      color: #FFFFFF;
+      font-size: 7.4pt;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      padding: 7pt 8pt;
+      text-align: left;
+      border-right: 1pt solid #374151;
+    }
+    th:first-child {
+      width: 108pt;
+    }
+    td {
+      border: 1pt solid #111827;
+      padding: 10pt 9pt;
+      vertical-align: top;
+      height: 58pt;
+    }
+    tbody tr:nth-child(1) td:first-child { background: #DCFCE7; }
+    tbody tr:nth-child(2) td:first-child { background: #DBEAFE; }
+    tbody tr:nth-child(3) td:first-child { background: #FFEDD5; }
+    tbody tr:nth-child(4) td:first-child { background: #FCE7F3; }
+    td h2 {
+      font-size: 15pt;
+      line-height: 1.2;
+      letter-spacing: 0;
+      margin-bottom: 4pt;
+      padding-bottom: 2pt;
+    }
+    td p {
+      color: #374151;
+      font-size: 9.3pt;
+      line-height: 1.32;
+      font-weight: 650;
+    }
+    .tag {
+      display: inline-block;
+      color: #6B7280;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5pt;
+    }
+    .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      bottom: 11pt;
+      display: flex;
+      justify-content: space-between;
+      color: #6B7280;
+      font-size: 7.5pt;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div>
+      <p class="kicker">Tool Stack / 05</p>
+      <h1>네 도구의 역할을 한 장으로 보기</h1>
+    </div>
+    <p class="message">어느 도구가 더 좋은지가 아니라, 어느 단계에서 무엇을 맡길지가 중요하다.</p>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>tool</th>
+          <th>맡길 일</th>
+          <th>좋은 사용 순간</th>
+          <th>주의할 점</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><h2>ECC</h2><p>하네스</p></td>
+          <td><p>에이전트, 스킬, 훅, 규칙, MCP 설정</p></td>
+          <td><p>작업 환경을 매번 비슷하게 굴리고 싶을 때</p></td>
+          <td><p>구성요소를 한 번에 다 켜지 않는다</p></td>
+        </tr>
+        <tr>
+          <td><h2>OMC</h2><p>실행</p></td>
+          <td><p>큰 작업을 모드와 에이전트 팀으로 실행</p></td>
+          <td><p>계획, 병렬 처리, 확인 루프가 필요할 때</p></td>
+          <td><p>작은 일에 과한 모드를 붙이지 않는다</p></td>
+        </tr>
+        <tr>
+          <td><h2>Superpowers</h2><p>기술</p></td>
+          <td><p>아이디어를 설계와 TDD 실행으로 바꿈</p></td>
+          <td><p>기능을 작게 나누고 안정적으로 확인할 때</p></td>
+          <td><p>절차를 건너뛰면 가치가 줄어든다</p></td>
+        </tr>
+        <tr>
+          <td><h2>OpenSpec</h2><p>기록</p></td>
+          <td><p>요구사항과 변경 이유를 문서로 남김</p></td>
+          <td><p>팀이 나중에 이유를 다시 봐야 할 때</p></td>
+          <td><p>작은 수정까지 문서로 남길지 선을 정합니다</p></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <footer class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>05 / 54</p>
+  </footer>
+</body>
+</html>

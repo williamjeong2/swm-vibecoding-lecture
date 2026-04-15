@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superpowers 기본 흐름</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #101827;
+      color: #F8FAFC;
+      padding: 24pt 30pt 22pt;
+    }
+    .slide {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12pt;
+    }
+    .topline, .footer {
+      display: flex;
+      justify-content: space-between;
+      color: #94A3B8;
+      font-family: 'Space Mono', monospace;
+      font-size: 7.4pt;
+      text-transform: uppercase;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 250pt 1fr;
+      gap: 18pt;
+      min-height: 0;
+      align-items: center;
+    }
+    .terminal {
+      border: 1pt solid #334155;
+      background: #020617;
+      min-height: 253pt;
+      padding: 14pt;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .prompt p {
+      font-family: 'Space Mono', monospace;
+      font-size: 8.6pt;
+      line-height: 1.7;
+      color: #C4B5FD;
+    }
+    .kicker {
+      color: #38BDF8;
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      margin-bottom: 10pt;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 28.5pt;
+      line-height: 1.14;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+      padding-bottom: 3pt;
+    }
+    .message {
+      color: #CBD5E1;
+      font-size: 12pt;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+    .rail {
+      position: relative;
+      height: 266pt;
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+      gap: 7pt;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 36pt 1fr;
+      gap: 8pt;
+      align-items: center;
+      border: 1pt solid #334155;
+      background: #172033;
+      padding: 7pt 10pt;
+    }
+    .num {
+      width: 27pt;
+      height: 27pt;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1pt solid #38BDF8;
+      background: #0F172A;
+    }
+    .step h3 {
+      font-size: 10.8pt;
+      margin-bottom: 2pt;
+      color: #FFFFFF;
+    }
+    .step p {
+      font-size: 8.5pt;
+      color: #CBD5E1;
+      line-height: 1.25;
+    }
+    .step:nth-child(2) { margin-left: 18pt; }
+    .step:nth-child(3) { margin-left: 36pt; }
+    .step:nth-child(4) { margin-left: 18pt; }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <div class="topline">
+      <p>VIBE CODING ADVANCED</p>
+      <p>Flow</p>
+    </div>
+    <section class="layout">
+      <article class="terminal">
+        <section>
+          <p class="kicker">Flow / 26</p>
+          <h2>승인 없이 바로 만들지 않습니다</h2>
+          <p class="message">Superpowers의 핵심은 에이전트가 속도를 내기 전에 문제와 계획을 먼저 고정하는 데 있습니다.</p>
+        </section>
+        <section class="prompt">
+          <p>$ skill brainstorm</p>
+          <p>$ write plan</p>
+          <p>$ execute in batches</p>
+          <p>$ verify branch</p>
+        </section>
+      </article>
+      <section class="rail">
+        <article class="step">
+          <div class="num"></div>
+          <section>
+            <h3>01 Brainstorm</h3>
+            <p>요구사항과 대안을 먼저 정리합니다.</p>
+          </section>
+        </article>
+        <article class="step">
+          <div class="num"></div>
+          <section>
+            <h3>02 Worktree</h3>
+            <p>승인된 설계가 있으면 작업 공간을 분리합니다.</p>
+          </section>
+        </article>
+        <article class="step">
+          <div class="num"></div>
+          <section>
+            <h3>03 Plan</h3>
+            <p>2~5분 단위의 실행 항목으로 쪼갠다.</p>
+          </section>
+        </article>
+        <article class="step">
+          <div class="num"></div>
+          <section>
+            <h3>04 Execute</h3>
+            <p>배치 단위 실행이나 subagent 개발로 이어갑니다.</p>
+          </section>
+        </article>
+        <article class="step">
+          <div class="num"></div>
+          <section>
+            <h3>05 Verify</h3>
+            <p>테스트 통과와 브랜치 마무리를 확인합니다.</p>
+          </section>
+        </article>
+      </section>
+    </section>
+    <div class="footer">
+      <p>SW Maestro Lecture</p>
+      <p>26 / 54</p>
+    </div>
+  </main>
+</body>
+</html>

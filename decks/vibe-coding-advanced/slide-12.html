@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commit/Revert 자동 결정 조건</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #f6f4ef;
+      color: #1f1f1b;
+      padding: 21pt 28pt 18pt;
+      position: relative;
+    }
+    .topline, .footer {
+      position: absolute;
+      left: 28pt;
+      right: 28pt;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 7.5pt;
+      letter-spacing: .6pt;
+      text-transform: uppercase;
+      color: #626057;
+    }
+    .topline { top: 15pt; }
+    .footer { bottom: 13pt; }
+    main {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 285pt 1fr;
+      gap: 20pt;
+      align-items: stretch;
+      padding-top: 13pt;
+      padding-bottom: 11pt;
+    }
+    .left {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 16pt;
+      padding-top: 10pt;
+    }
+    .kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      color: #b43e35;
+      margin-bottom: 9pt;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 24pt;
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0;
+      margin-bottom: 12pt;
+    }
+    h1, h2, h3, p, li { padding-bottom: 1.5pt; }
+    .message {
+      font-size: 11.2pt;
+      line-height: 1.42;
+      color: #514e45;
+      font-weight: 650;
+    }
+    .ledger {
+      align-self: end;
+      border: 1pt solid #cbc6b7;
+      background: #fffdf8;
+      padding: 12pt;
+      display: grid;
+      gap: 8pt;
+    }
+    .ledger h2 {
+      font-size: 12pt;
+      margin-bottom: 2pt;
+    }
+    .ledger p {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.8pt;
+      line-height: 1.45;
+      color: #514e45;
+    }
+    .gate {
+      position: relative;
+      background: #fffdf8;
+      border: 1pt solid #cbc6b7;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 54pt 1fr 60pt;
+      box-shadow: 0 14pt 34pt rgba(66, 54, 31, .12);
+    }
+    .input, .output {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 10pt 28pt;
+      background: #1f1f1b;
+      color: #ffffff;
+    }
+    .input h2, .output h2 {
+      font-size: 13pt;
+      line-height: 1.2;
+    }
+    .lanes {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 0;
+    }
+    .lane {
+      position: relative;
+      padding: 22pt 20pt 16pt;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 12pt;
+      align-items: start;
+    }
+    .lane.commit {
+      background: #eaf8ee;
+      border-right: 1pt solid #cbc6b7;
+    }
+    .lane.revert { background: #fff0ee; }
+    .lane h3 {
+      font-size: 17pt;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+    .commit h3 { color: #117a3a; }
+    .revert h3 { color: #b43e35; }
+    ul {
+      list-style: none;
+      display: grid;
+      gap: 8pt;
+    }
+    li {
+      font-size: 9.4pt;
+      line-height: 1.28;
+      color: #343229;
+      background: rgba(255, 255, 255, .72);
+      border: 1pt solid rgba(52, 50, 41, .12);
+      padding: 8pt 9pt;
+      border-radius: 5pt;
+      font-weight: 650;
+    }
+    .divider {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1pt;
+      background: #cbc6b7;
+    }
+    .switch {
+      position: absolute;
+      left: 50%;
+      top: 92pt;
+      width: 48pt;
+      height: 48pt;
+      margin-left: -24pt;
+      border-radius: 50%;
+      background: #fffdf8;
+      border: 1pt solid #cbc6b7;
+      display: grid;
+      place-items: center;
+      padding: 8pt;
+      box-shadow: 0 8pt 20pt rgba(66, 54, 31, .18);
+      text-align: center;
+    }
+    .switch p {
+      font-family: 'Space Mono', monospace;
+      font-size: 6.7pt;
+      color: #1f1f1b;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">
+    <p>VIBE CODING ADVANCED</p>
+    <p>Guardrail</p>
+  </div>
+  <main>
+    <section class="left">
+      <div>
+        <p class="kicker">Guardrail / 12</p>
+        <h1>자동 commit은<br>판정 조건이 먼저다</h1>
+        <p class="message">실험 단위가 작고 실패 기준과 로그가 있을 때만 commit/revert 자동화가 안전합니다.</p>
+      </div>
+      <div class="ledger">
+        <h2>로그에 남길 것</h2>
+        <p>hypothesis: 무엇을 개선하려 했나</p>
+        <p>change: 어떤 diff를 만들었나</p>
+        <p>verdict: 왜 commit/revert였나</p>
+        <p>next: 다음 시도는 무엇인가</p>
+      </div>
+    </section>
+    <section class="gate">
+      <div class="input"><h2>작고 되돌릴 수 있는 변경 단위</h2></div>
+      <div class="lanes">
+        <div class="divider"></div>
+        <div class="switch"><p>eval<br>gate</p></div>
+        <div class="lane commit">
+          <h3>Commit</h3>
+          <ul>
+            <li>테스트, lint, typecheck가 모두 통과</li>
+            <li>제품 기준 eval 점수가 기준선을 넘음</li>
+            <li>회귀와 비용 증가가 허용 범위 안</li>
+          </ul>
+        </div>
+        <div class="lane revert">
+          <h3>Revert</h3>
+          <ul>
+            <li>핵심 시나리오가 깨졌거나 불안정</li>
+            <li>개선보다 부작용이 더 크다고 판정</li>
+            <li>다음 가설이 필요한 실패로 분류</li>
+          </ul>
+        </div>
+      </div>
+      <div class="output"><h2>사람은 모든 diff보다 판정 근거를 본다</h2></div>
+    </section>
+  </main>
+  <div class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>12 / 54</p>
+  </div>
+</body>
+</html>

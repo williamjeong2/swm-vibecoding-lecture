@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECC Agents: 역할은 권한입니다</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      overflow: hidden;
+      font-family: 'Pretendard', sans-serif;
+      background: #111827;
+      color: #F9FAFB;
+      padding: 23pt 30pt;
+      position: relative;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 14pt;
+    }
+    .kicker,
+    .footer p,
+    .matrix p,
+    .chip p {
+      font-family: 'Space Mono', monospace;
+    }
+    .kicker {
+      color: #38BDF8;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 7pt;
+    }
+    h1 {
+      font-size: 28pt;
+      line-height: 1.17;
+      letter-spacing: 0;
+      font-weight: 880;
+      padding-bottom: 3pt;
+    }
+    .message {
+      width: 250pt;
+      color: #CBD5E1;
+      font-size: 11.8pt;
+      line-height: 1.42;
+      font-weight: 650;
+      text-align: right;
+    }
+    .matrix {
+      display: grid;
+      grid-template-columns: 112pt repeat(4, 1fr);
+      border: 1pt solid #334155;
+      background: #0F172A;
+    }
+    .cell {
+      min-height: 52pt;
+      border-right: 1pt solid #334155;
+      border-bottom: 1pt solid #334155;
+      padding: 8pt 9pt;
+    }
+    .cell:nth-child(5n) {
+      border-right: 0;
+    }
+    .head {
+      min-height: 34pt;
+      background: #1E293B;
+    }
+    .head p {
+      color: #93C5FD;
+      font-size: 7.2pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .role h2 {
+      font-size: 12.5pt;
+      line-height: 1.22;
+      letter-spacing: 0;
+      margin-bottom: 4pt;
+      padding-bottom: 2pt;
+    }
+    .role p {
+      color: #94A3B8;
+      font-size: 7.8pt;
+      line-height: 1.34;
+      padding-bottom: 2pt;
+    }
+    .yes {
+      background: #063B3B;
+    }
+    .no {
+      background: #1F2937;
+    }
+    .limited {
+      background: #3B2F0B;
+    }
+    .yes p,
+    .no p,
+    .limited p {
+      font-size: 8.4pt;
+      line-height: 1.42;
+      font-weight: 700;
+      padding-bottom: 2pt;
+    }
+    .yes p { color: #A7F3D0; }
+    .no p { color: #94A3B8; }
+    .limited p { color: #FDE68A; }
+    .chip {
+      position: absolute;
+      right: 30pt;
+      bottom: 34pt;
+      background: #38BDF8;
+      color: #082F49;
+      padding: 6pt 9pt;
+    }
+    .chip p {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .footer {
+      position: absolute;
+      left: 30pt;
+      right: 30pt;
+      bottom: 10pt;
+      display: flex;
+      justify-content: space-between;
+      color: #94A3B8;
+      font-size: 7.5pt;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div>
+      <p class="kicker">Agents / 08</p>
+      <h1>ECC Agents: 역할은 권한입니다</h1>
+    </div>
+    <p class="message">검색하지 말라고 말하는 것보다, 검색 도구가 없는 에이전트를 쓰는 편이 더 강하다.</p>
+  </header>
+  <main class="matrix">
+    <div class="cell head"><p>role</p></div>
+    <div class="cell head"><p>web</p></div>
+    <div class="cell head"><p>read</p></div>
+    <div class="cell head"><p>edit</p></div>
+    <div class="cell head"><p>review</p></div>
+    <div class="cell role"><h2>researcher</h2><p>검색과 자료 수집</p></div>
+    <div class="cell yes"><p>허용</p></div>
+    <div class="cell yes"><p>허용</p></div>
+    <div class="cell no"><p>차단</p></div>
+    <div class="cell limited"><p>요약</p></div>
+    <div class="cell role"><h2>creator</h2><p>주어진 자료 기반 초안 작성</p></div>
+    <div class="cell no"><p>차단</p></div>
+    <div class="cell yes"><p>허용</p></div>
+    <div class="cell limited"><p>초안</p></div>
+    <div class="cell no"><p>차단</p></div>
+    <div class="cell role"><h2>editor</h2><p>구조와 말투 수정</p></div>
+    <div class="cell no"><p>차단</p></div>
+    <div class="cell yes"><p>허용</p></div>
+    <div class="cell yes"><p>허용</p></div>
+    <div class="cell limited"><p>문체</p></div>
+    <div class="cell role"><h2>code-reviewer</h2><p>계획과 구현이 어긋났는지 확인</p></div>
+    <div class="cell limited"><p>필요할 때</p></div>
+    <div class="cell yes"><p>허용</p></div>
+    <div class="cell no"><p>차단</p></div>
+    <div class="cell yes"><p>허용</p></div>
+  </main>
+  <div class="chip"><p>tools field = boundary</p></div>
+  <footer class="footer">
+    <p>SW Maestro Lecture</p>
+    <p>08 / 54</p>
+  </footer>
+</body>
+</html>
